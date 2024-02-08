@@ -2,7 +2,8 @@ import warnings
 
 from qtpy.QtCore import Signal, QObject
 from qtpy import QtGui, QtCore, QtWidgets
-from pyqtgraph.dockarea import Dock, DockArea, DockLabel
+from pyqtgraph.dockarea import Dock, DockArea
+from pyqtgraph.dockarea.Dock import DockLabel
 from pyqtgraph.dockarea.DockArea import TempAreaWindow
 from pyqtgraph.widgets.VerticalLabel import VerticalLabel
 
@@ -10,8 +11,7 @@ from pyqtgraph.widgets.VerticalLabel import VerticalLabel
 class Dock(Dock):
     dock_focused = Signal(str)
     def __init__(self, name, *args, fontSize='14px', **kwargs):
-        label = DockLabel(name, fontSize=fontSize)
-        super().__init__(name, *args, label=label, **kwargs)
+        super().__init__(name, *args, **kwargs)
 
     def removeWidgets(self):
         for widget in self.widgets:
